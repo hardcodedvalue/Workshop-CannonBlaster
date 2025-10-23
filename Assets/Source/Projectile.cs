@@ -40,10 +40,12 @@ public class Projectile : MonoBehaviour
         // Play impact sound
         float audioLength = 0f;
 
-        if (_impactSound != null && _audioSource != null)
-        {
-            audioLength = _audioSource.clip.length;
-            _audioSource.PlayOneShot(_impactSound);
+        if (_impactSound != null && _audioSource != null) {
+            audioLength = _impactSound.length;
+
+            if (!_audioSource.isPlaying) {
+                _audioSource.PlayOneShot(_impactSound);
+            }
         }
         
         // Spawn impact effect

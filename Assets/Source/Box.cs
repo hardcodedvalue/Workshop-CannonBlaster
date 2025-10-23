@@ -2,6 +2,7 @@ using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
 [RequireComponent(typeof(BoxCollider2D))]
+[RequireComponent(typeof(AudioSource))]
 public class Box : MonoBehaviour
 {
     [Header("Box Physics Settings")]
@@ -33,8 +34,6 @@ public class Box : MonoBehaviour
     [Header("Effects")]
     [SerializeField]
     private GameObject _toppleEffect; // Particle effect when toppled
-    [SerializeField]
-    private AudioClip _toppleSound; // Sound when toppled
     [SerializeField]
     private AudioClip _impactSound; // Sound when hit
     
@@ -128,15 +127,13 @@ public class Box : MonoBehaviour
             Instantiate(_toppleEffect, transform.position, Quaternion.identity);
         }
         
-        // Play topple sound
-        if (_toppleSound != null && _audioSource != null)
-        {
-            _audioSource.PlayOneShot(_toppleSound);
-        }
-        
         // Award points (you can hook this up to a score manager)
         Debug.Log($"Box toppled! +{_pointValue} points");
-        
+
+        if (ScoreManager.Instance) {
+            ScoreManager.Instance.AddScore(PointValue);
+        }
+
         // Don't start fade immediately - wait for box to settle
     }
     
@@ -173,14 +170,12 @@ public class Box : MonoBehaviour
         {
             // Only play if collision is strong enough
             float impactForce = collision.relativeVelocity.magnitude;
-            if (impactForce > 2f)
-            {
-                _audioSource.PlayOneShot(_impactSound, Mathf.Clamp01(impactForce / 10f));
+            if (impactForce > 2f) {
+                if (!_audioSource.isPlaying) {
+                    _audioSource.PlayOneShot(_impactSound, Mathf.Clamp01(impactForce / 10f));
+                }
             }
         }
-        
-        // Log what hit the box
-        Debug.Log($"Box hit by: {collision.gameObject.name}");
     }
     
     private System.Collections.IEnumerator FadeOutAndDestroy()

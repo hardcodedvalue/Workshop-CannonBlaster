@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
+[RequireComponent(typeof(AudioSource))]
 public class Cannon : MonoBehaviour
 {
     [Header("Cannon Settings")]
@@ -24,6 +25,13 @@ public class Cannon : MonoBehaviour
     private float _shootForce = 120f;
     [SerializeField]
     private float _shootCooldown = .25f;
+
+    [Header("Audio")]
+    [SerializeField]
+    private AudioSource _audioSource;
+
+    [SerializeField]
+    private AudioClip _cannonFire;
     
     private float _currentRotation = 0f;
     private float _lastShootTime = 0f;
@@ -131,6 +139,8 @@ public class Cannon : MonoBehaviour
             return;
             
         Shoot();
+        _audioSource.PlayOneShot(_cannonFire);
+
         _lastShootTime = Time.time;
     }
     

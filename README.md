@@ -6,10 +6,18 @@ Workshop demo of angry birds clone
 
 All assets are used for educational purposes only.
 
+## Sprites
+
 - [Box.png](https://opengameart.org/content/2d-wooden-box)
 - [CannonBall.png](https://www.pikpng.com/pngvi/hhJxhow_cannonball-cannon-ball-pixel-art-clipart/)
 - [Cannon.png](https://www.pikpng.com/pngvi/iTxiiom_cannon-cannon-barrel-clipart/)
 - [Platform.jpg](https://www.freepik.com/free-photos-vectors/stylized-wood)
+
+## Audio
+
+- [Cannon.flac](https://freesound.org/people/SamsterBirdies/sounds/581598/)
+- [Hit.ogg](https://freesound.org/people/luminousfridge/sounds/496191/)
+- [BallHit.wav](https://freesound.org/people/minerjr/sounds/89977/)
 
 ## Copilot prompts
 
