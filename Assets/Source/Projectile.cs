@@ -13,8 +13,6 @@ public class Projectile : MonoBehaviour
     
     [Header("Effects")]
     [SerializeField]
-    private GameObject _impactEffect; // Optional impact effect prefab
-    [SerializeField]
     private AudioClip _impactSound; // Optional impact sound
 
     [SerializeField]
@@ -46,12 +44,6 @@ public class Projectile : MonoBehaviour
             if (!_audioSource.isPlaying) {
                 _audioSource.PlayOneShot(_impactSound);
             }
-        }
-        
-        // Spawn impact effect
-        if (_impactEffect != null)
-        {
-            Instantiate(_impactEffect, transform.position, Quaternion.identity);
         }
         
         // Log what we hit for debugging

@@ -33,8 +33,6 @@ public class Box : MonoBehaviour
     
     [Header("Effects")]
     [SerializeField]
-    private GameObject _toppleEffect; // Particle effect when toppled
-    [SerializeField]
     private AudioClip _impactSound; // Sound when hit
     
     [Header("Scoring")]
@@ -120,12 +118,6 @@ public class Box : MonoBehaviour
     private void OnToppled()
     {
         _hasBeenToppled = true;
-        
-        // Play topple effect
-        if (_toppleEffect != null)
-        {
-            Instantiate(_toppleEffect, transform.position, Quaternion.identity);
-        }
         
         // Award points (you can hook this up to a score manager)
         Debug.Log($"Box toppled! +{_pointValue} points");
