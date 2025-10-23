@@ -55,6 +55,9 @@ public class Box : MonoBehaviour
         _boxCollider = GetComponent<BoxCollider2D>();
         _audioSource = GetComponent<AudioSource>();
         _spriteRenderer = GetComponent<SpriteRenderer>();
+        
+        // Make the box sleep so it doesn't move initially
+        _rb.Sleep();
     }
     
     private void Start()
